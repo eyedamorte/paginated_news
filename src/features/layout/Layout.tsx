@@ -1,26 +1,18 @@
-import React, { useState, useCallback } from 'react';
+import React, { FC } from 'react';
 import { Layout } from 'antd';
-import LayoutMenu from '../layoutMenu/LayoutMenu';
-import usersDataSet from '../../datasets/users';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Footer } = Layout;
 
-export default function CustomLayout(){
-    
-    const [collapsed, setCollapsed] = useState(false);
+const CustomLayout: FC = ({children}) => {
 
     return(
         <Layout style={{ minHeight: '100vh' }}>
-        <Sider collapsible collapsed={collapsed} onCollapse={setCollapsed}>
-          <div className="logo" />
-          <LayoutMenu list={usersDataSet}/>
-        </Sider>
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{ padding: 0 }} />
           <Content style={{ margin: '0 16px' }}>
             
             <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-              Bill is a cat.
+                {children}
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>Household chores tracker</Footer>
@@ -30,3 +22,4 @@ export default function CustomLayout(){
     
 }
 
+export default CustomLayout

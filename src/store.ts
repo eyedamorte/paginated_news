@@ -1,10 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import counterReducer from './features/counter/counterSlice';
-import usersReducer from './features/layout/usersSlice';
+import filtersReducer from './features/filters/FiltersSlice'
+import newsReducer from './features/news/NewsSlice'
 
 const RootReducer = combineReducers({
-    counter: counterReducer,
-    users: usersReducer
+    filters: filtersReducer,
+    news: newsReducer
 })
 
 export type RootReducerType = ReturnType<typeof RootReducer>
