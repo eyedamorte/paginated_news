@@ -3,13 +3,14 @@ import { Input } from 'antd';
 
 interface InputProps {
     onChange: (e: React.FormEvent<HTMLInputElement>) => void,
-    style: React.CSSProperties
+    style: React.CSSProperties,
+    placeholder: string
 }
 
-const CustomInput : FC<InputProps> = ({onChange, style}) => {
+const CustomInput : FC<InputProps> = ({onChange, style, placeholder}) => {
 
     return(
-        <Input placeholder="Basic usage" {...{ onChange, style }} />
+        <Input placeholder={placeholder} {...{ onChange, style }} />
     )
     
 }

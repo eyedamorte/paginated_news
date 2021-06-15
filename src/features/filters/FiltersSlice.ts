@@ -3,7 +3,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import type { FiltersStateType } from './filtersTypes'
 
 const InitialState: FiltersStateType = {
-    search: ''
+    search: '',
+    isTopHeadlines: false
 }
 
 export const filtersSlice = createSlice({
@@ -19,10 +20,13 @@ export const filtersSlice = createSlice({
     refreshFilters: (state) => {
       state = InitialState
     },
+    updateHeadlinesMethod: (state, action) => {
+      state.isTopHeadlines = action.payload
+    },
   },
   
 })
 
-export const { updateSearch, refreshSearch, refreshFilters } = filtersSlice.actions
+export const { updateSearch, refreshSearch, refreshFilters, updateHeadlinesMethod } = filtersSlice.actions
 
 export default filtersSlice.reducer

@@ -1,3 +1,4 @@
 export type FiltersStateType = {
-    search: string
+    search: string,
+    isTopHeadlines: boolean
 }

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { List, Avatar } from 'antd';
+import { List } from 'antd';
 import { ArticleType } from '../../news/newsTypes'
 
 interface ListItemPropsType {
@@ -13,7 +13,7 @@ const Card : FC<ListItemPropsType> = ({item}) => {
             key={item.id}
             extra={
             <img
-                width={272}
+                width={200}
                 alt="logo"
                 src={item.urlToImage}
             />
@@ -21,9 +21,8 @@ const Card : FC<ListItemPropsType> = ({item}) => {
         >
         <List.Item.Meta
             title={<a href={item.title}>{item.title}</a>}
-            description={item.description}
+            description={<div dangerouslySetInnerHTML={{ __html: item.description }} />}
             />
-            {item.content}
         </List.Item>
     )
     

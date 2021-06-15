@@ -1,24 +1,28 @@
 import React, { useCallback } from 'react';
 import type { FC } from 'react';
-
 import CustomInput from '../common/input/Input'
 import { useSelector, useDispatch } from 'react-redux'
-import { updateSearch } from './FiltersSlice'
-import { getSearchValue } from './filtersSelector'
-import { Button } from 'antd';
+import { updateSearch, updateHeadlinesMethod } from './FiltersSlice'
+import { getSearchValue, getIsTopHeadlines } from './filtersSelector'
+import { Button, Switch } from 'antd';
 import { useEffect } from 'react';
 import { getIsPending } from '../news/newsSelector';
 import { getNewsThunk } from '../news/NewsSlice'
 
 
 const Filters : FC = () => {
+    const dispatch = useDispatch()
+
     const SearchValue = useSelector(getSearchValue)
     const isPending = useSelector(getIsPending)
-
-    const dispatch = useDispatch()
+    const isTopHeadlines = useSelector(getIsTopHeadlines)
 
     const SearchInputOnChange = (e: React.FormEvent<HTMLInputElement>) =>{
         dispatch(updateSearch(e.currentTarget.value))
+    }
+
+    const changeHeadlinesMethod = (checked: boolean) =>{
+        dispatch(updateHeadlinesMethod(checked))
     }
 
     const getNews = useCallback((params) => {
@@ -26,7 +30,7 @@ const Filters : FC = () => {
     }, [])
 
     useEffect(() => {
-        getNews({ q: 'anime' })
+        getNews({ q: 'react' })
     }, [])
 
     const submit = useCallback(() =>{
@@ -35,7 +39,26 @@ const Filters : FC = () => {
 
     return(
         <div style={{ padding: 10 }}>
-            <CustomInput style={{margin: '0 0 20px 0'}} onChange={SearchInputOnChange}/>
+            <div>
+            {
+                isTopHeadlines ? 
+                <div>
+                    <CustomInput style={{margin: '0 0 20px 0'}} placeholder='Search news' onChange={SearchInputOnChange}/>
+                </div> 
+                :
+                 <div>
+                     топ
+                </div>
+            }
+            </div>
+            <div style={{margin: '0 0 20px 0'}}>
+                <Switch 
+                    checkedChildren="All articles" 
+                    unCheckedChildren="Top headlines" 
+                    defaultChecked 
+                    onChange={changeHeadlinesMethod}
+                />
+            </div>
             <Button type="primary" block disabled={isPending} onClick={submit}>Search</Button>
         </div>
     )

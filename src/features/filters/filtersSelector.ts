@@ -8,3 +8,7 @@ export const getSearchValue = createSelector<RootReducerType, FiltersStateType['
     value => value
 )
 
+export const getIsTopHeadlines = createSelector<RootReducerType, FiltersStateType['isTopHeadlines'], FiltersStateType['isTopHeadlines']>(
+    state => state.filters.isTopHeadlines,
+    value => value
+)

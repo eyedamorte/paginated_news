@@ -17,7 +17,7 @@ const CustomCards : FC<CustomCardPropsType> = ({list}) => {
             onChange: page => {
                 console.log(page);
             },
-            pageSize: 3,
+            pageSize: 8,
             }}
             dataSource={list}
             

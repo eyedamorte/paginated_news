@@ -15,7 +15,7 @@ const CustomLayout: FC = ({children}) => {
                 {children}
             </div>
           </Content>
-          <Footer style={{ textAlign: 'center' }}>Household chores tracker</Footer>
+          <Footer style={{ textAlign: 'center' }}>Eyedamorte news</Footer>
         </Layout>
       </Layout>
     )

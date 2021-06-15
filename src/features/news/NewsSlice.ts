@@ -23,6 +23,7 @@ export const getNewsThunk = createAsyncThunk(`${ReducerName}/getNews`, async (pa
   return response.data.articles
 })
 
+
 export const newsSlice = createSlice({
   name: ReducerName,
   initialState: InitialState,
