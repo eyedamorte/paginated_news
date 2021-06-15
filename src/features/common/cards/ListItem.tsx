@@ -3,10 +3,11 @@ import { List } from 'antd';
 import { ArticleType } from '../../news/newsTypes'
 
 interface ListItemPropsType {
-    item: ArticleType
+    item: ArticleType,
+    redirect: (user: ArticleType) => void
 }
 
-const Card : FC<ListItemPropsType> = ({item}) => {
+const Card : FC<ListItemPropsType> = ({item, redirect}) => {
 
     return(
         <List.Item
@@ -20,7 +21,7 @@ const Card : FC<ListItemPropsType> = ({item}) => {
             }
         >
         <List.Item.Meta
-            title={<a href={item.title}>{item.title}</a>}
+            title={<a  onClick={() => redirect(item)}>{item.title}</a>}
             description={<div dangerouslySetInnerHTML={{ __html: item.description }} />}
             />
         </List.Item>

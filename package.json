@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.1",
+    "@types/react-router-dom": "^5.1.7",
     "antd": "^4.16.0",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
@@ -15,6 +16,7 @@
     "react-bootstrap": "^1.6.0",
     "react-dom": "^17.0.0",
     "react-redux": "^7.2.4",
+    "react-router-dom": "^5.2.0",
     "url": "^0.11.0"
   },
   "devDependencies": {

@@ -1,11 +1,10 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import type { FC } from 'react';
 import CustomInput from '../common/input/Input'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateSearch, updateHeadlinesMethod } from './FiltersSlice'
 import { getSearchValue, getIsTopHeadlines } from './filtersSelector'
 import { Button, Switch } from 'antd';
-import { useEffect } from 'react';
 import { getIsPending } from '../news/newsSelector';
 import { getNewsThunk } from '../news/NewsSlice'
 

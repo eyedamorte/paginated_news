@@ -33,7 +33,7 @@ export const newsSlice = createSlice({
       state.isPending = true
     })
     builder.addCase(getNewsThunk.fulfilled, (state, action) => {
-      state.news = action.payload
+      state.news = action.payload.map((item:any, index: number) => {return {...item, id: index}})
       state.isPending = false
     })
     builder.addCase(getNewsThunk.rejected, (state, action) => {
