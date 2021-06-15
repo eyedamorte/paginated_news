@@ -1,22 +1,25 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from "axios";
-
+import settings from '../../settings'
 
 import type { NewsStateType } from './newsTypes'
 
 const ReducerName = 'news'
+const headlineMethods = ['top-headlines', 'everything'];
 
 const InitialState: NewsStateType = {
   news: [],
-  isPending: false
+  isPending: false,
 }
 
-export const getNewsThunk = createAsyncThunk(`${ReducerName}/getNews`, async (params: any) => {
+export const getNewsThunk = createAsyncThunk(`${ReducerName}/getNews`, async ({ params, isTopHeadlines }: { params: any, isTopHeadlines: boolean }) => {
+  console.log(isTopHeadlines);
+  
   const response = await axios.get(
-    'https://newsapi.org/v2/everything', {
+    `https://newsapi.org/v2/${isTopHeadlines ? headlineMethods[0] : headlineMethods[1]}`, {
       params: {
         ...params, sortBy: 'publishedAt',
-        apiKey: 'eed81886b1b8427d8f75b1aec5837517'
+        apiKey: settings.apiKey
       }
     }
   )
