@@ -1,40 +1,42 @@
-import React, { FC } from 'react';
+import React, { useCallback } from 'react';
+import type { FC } from 'react';
+
 import CustomInput from '../common/input/Input'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateSearch } from './FiltersSlice'
 import { getSearchValue } from './filtersSelector'
 import { Button } from 'antd';
-import axios from "axios";
 import { useEffect } from 'react';
-
+import { getIsPending } from '../news/newsSelector';
 import { getNewsThunk } from '../news/NewsSlice'
 
 
 const Filters : FC = () => {
     const SearchValue = useSelector(getSearchValue)
+    const isPending = useSelector(getIsPending)
+
     const dispatch = useDispatch()
 
     const SearchInputOnChange = (e: React.FormEvent<HTMLInputElement>) =>{
         dispatch(updateSearch(e.currentTarget.value))
     }
 
-    useEffect(() => {
-        dispatch(getNewsThunk({
-            q: 'tesla',
-            sortBy: 'publishedAt',
-            apiKey: 'eed81886b1b8427d8f75b1aec5837517'
-        }))
+    const getNews = useCallback((params) => {
+        dispatch(getNewsThunk(params))
     }, [])
 
-    const submit = () =>{
-        
-    }
+    useEffect(() => {
+        getNews({ q: 'anime' })
+    }, [])
+
+    const submit = useCallback(() =>{
+        getNews({q: SearchValue})
+    }, [SearchValue])
 
     return(
-        <div>
-            <CustomInput onChange={SearchInputOnChange}/>
-            {SearchValue}
-            <Button type="primary" block onClick={submit}>Search</Button>
+        <div style={{ padding: 10 }}>
+            <CustomInput style={{margin: '0 0 20px 0'}} onChange={SearchInputOnChange}/>
+            <Button type="primary" block disabled={isPending} onClick={submit}>Search</Button>
         </div>
     )
     

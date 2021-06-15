@@ -16,5 +16,6 @@ export type ArticleType = {
 }
 
 export type NewsStateType = {
-    news: ArticleType[]
+    news: ArticleType[],
+    isPending: boolean
 }

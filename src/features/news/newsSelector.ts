@@ -8,3 +8,8 @@ export const getNewsList = createSelector<RootReducerType, NewsStateType['news']
     value => value
 )
 
+export const getIsPending = createSelector<RootReducerType, NewsStateType['isPending'], NewsStateType['isPending']>(
+    state => state.news.isPending,
+    value => value
+)
+

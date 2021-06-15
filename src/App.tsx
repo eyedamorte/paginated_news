@@ -14,7 +14,7 @@ export default function App() {
   return (
       <Customlayout>
         <Row>
-          <Col span={12}>
+          <Col span={6}>
             <Filters/>
           </Col>
           <Col span={12}>
