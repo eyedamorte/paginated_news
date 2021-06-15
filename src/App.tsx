@@ -1,27 +1,26 @@
 import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'antd/dist/antd.css'
 import Customlayout from './features/layout/Layout'
 import Filters from './features/filters/Filters'
 import CustomCards from './features/common/cards/Cards'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { getNewsList } from './features/news/newsSelector'
+import { Row, Col } from 'antd';
 
 
 export default function App() {
 
-  const newsList = useSelector(getNewsList)
+  const newsList = useSelector(getNewsList)  
 
   return (
       <Customlayout>
-        <div className="row">
-          <div className="col-md-3">
+        <Row>
+          <Col span={12}>
             <Filters/>
-            </div>
-          <div className="col-md-9">
+          </Col>
+          <Col span={12}>
             <CustomCards list={newsList} />
-          </div>
-        </div>
+          </Col>
+        </Row>
       </Customlayout>
   )
 }

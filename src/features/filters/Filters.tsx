@@ -7,6 +7,8 @@ import { Button } from 'antd';
 import axios from "axios";
 import { useEffect } from 'react';
 
+import { getNewsThunk } from '../news/NewsSlice'
+
 
 const Filters : FC = () => {
     const SearchValue = useSelector(getSearchValue)
@@ -16,20 +18,13 @@ const Filters : FC = () => {
         dispatch(updateSearch(e.currentTarget.value))
     }
 
-    useEffect( () => {
-
+    useEffect(() => {
+        dispatch(getNewsThunk({
+            q: 'tesla',
+            sortBy: 'publishedAt',
+            apiKey: 'eed81886b1b8427d8f75b1aec5837517'
+        }))
     }, [])
-
-    async function fetchNews() {
-        try {
-            const response = await axios.get(
-                'https://newsapi.org/v2/everything?q=tesla&from=2021-05-14&sortBy=publishedAt&apiKey=eed81886b1b8427d8f75b1aec5837517'
-                )
-            
-        } catch (e){
-
-        }
-    }
 
     const submit = () =>{
         

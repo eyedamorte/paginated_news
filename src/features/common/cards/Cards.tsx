@@ -4,7 +4,7 @@ import { NewsStateType, ArticleType } from '../../news/newsTypes'
 import ListItem from './ListItem'
 
 interface CustomCardPropsType {
-    list: NewsStateType
+    list: NewsStateType['news']
 }
 
 const CustomCards : FC<CustomCardPropsType> = ({list}) => {

@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 import type { FiltersStateType } from './filtersTypes'
 
@@ -20,6 +20,7 @@ export const filtersSlice = createSlice({
       state = InitialState
     },
   },
+  
 })
 
 export const { updateSearch, refreshSearch, refreshFilters } = filtersSlice.actions

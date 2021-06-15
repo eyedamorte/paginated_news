@@ -15,4 +15,6 @@ export type ArticleType = {
     content: string
 }
 
-export type NewsStateType = ArticleType[]
+export type NewsStateType = {
+    news: ArticleType[]
+}
